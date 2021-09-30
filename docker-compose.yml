@@ -21,9 +21,9 @@ services:
         volumes:
             - .:/usr/app
         links:
-            - database_ignite
+            - database
         depends_on: 
-            - database_ignite
+            - database
 
 volumes:
     pgdata:
