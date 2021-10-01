@@ -6,7 +6,11 @@ class ImportCategoryController {
     handle(request: Request, response: Response): Response {
         const { file } = request;
 
-        this.importCategoryUseCase.execute(file);
+        try {
+            this.importCategoryUseCase.execute(file);
+        } catch (error) {
+            return response.status(400).json({ error: error.message });
+        }
 
         return response.status(201).send();
     }
