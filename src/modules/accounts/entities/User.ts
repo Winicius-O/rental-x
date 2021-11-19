@@ -2,12 +2,18 @@ import { v4 as uuidV4 } from "uuid";
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @Entity("users")
-class Users {
+class User {
     @PrimaryColumn()
     id: string;
 
     @Column()
     name: string;
+
+    @Column()
+    username: string;
+
+    @Column()
+    password: string;
 
     @Column()
     email: string;
@@ -28,4 +34,4 @@ class Users {
     }
 }
 
-export { Users };
+export { User };
