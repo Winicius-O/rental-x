@@ -1,4 +1,4 @@
-interface IUserRepositoryDTO {
+interface IUsersRepositoryDTO {
     name: string;
     username: string;
     email: string;
@@ -6,4 +6,4 @@ interface IUserRepositoryDTO {
     driver_license: string;
 }
 
-export { IUserRepositoryDTO };
+export { IUsersRepositoryDTO };
