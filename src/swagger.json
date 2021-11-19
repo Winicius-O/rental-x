@@ -11,9 +11,7 @@
     "paths": {
         "/categories": {
             "post": {
-                "tags": [
-                    "categories"
-                ],
+                "tags": ["categories"],
                 "summary": "create category",
                 "description": "creates a new category",
                 "requestBody": {
@@ -74,6 +72,75 @@
                             }
                         }
                     }
+                }
+            }
+        },
+        "/categories/import": {
+            "post": {
+                "tags": ["categories"],
+                "summary": "Upload a CSV of new categories",
+                "description": "process a CSV of new categories and create then on database",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    }
+                }
+            }
+        },
+        "/specifications": {
+            "post": {
+                "tags": ["specifications"],
+                "summary": "create specification",
+                "description": "creates a new specification",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#definitions/specification"
+                            },
+                            "example": {
+                                "name": "name of the specification",
+                                "description": "description of the specification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "500": {
+                        "description": "name already used."
+                    }
+                }
+                
+            }
+        }
+    },
+    "definitions": {
+        "specification": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"    
+                },
+                "description": {
+                    "type": "string"
                 }
             }
         }
