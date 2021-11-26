@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 import {
     ISpecificationsRepository,
     ICreateSpecificationDTO,
@@ -18,7 +19,7 @@ class CreateSpecificationUseCase {
         const isNameValid = await this.specificationRepository.findByName(name);
 
         if (isNameValid) {
-            throw new Error("name already used.");
+            throw new AppError("name already used.", 400);
         }
 
         await this.specificationRepository.create({ name, description });
